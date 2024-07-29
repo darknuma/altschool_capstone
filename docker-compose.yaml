@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - "5434:5432" 
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ecommerce
+    volumes:
+      - ./postgresdb-var:/var/lib/postgresql/data
+      - ./data:/data 
+      - ./infra_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+
+
+
+ 

@@ -1,0 +1,3 @@
+.env
+postgresdb-var
+wait-for-postgres.sh
