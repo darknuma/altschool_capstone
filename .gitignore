@@ -1,3 +1,8 @@
 .env
 postgresdb-var
 wait-for-postgres.sh
+venv
+config
+logs
+plugins
+__pycache__
