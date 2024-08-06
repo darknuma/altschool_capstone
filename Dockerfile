@@ -18,4 +18,4 @@ USER emmanuel
 
 # Additional setup commands can follow here, if needed
 ADD requirements.txt .
-RUN pip install apache-airflow==${AIRFLOW_VERSION} -r requirements.txt
+RUN pip install apache-airflow==${airflow_version} -r requirements.txt

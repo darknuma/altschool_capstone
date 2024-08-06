@@ -1,7 +1,7 @@
 from airflow.decorators import dag, task
 from airflow.providers.google.cloud.transfers.postgres_to_gcs import PostgresToGCSOperator
 from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
-import pendulum 
+ 
 
 ## BigQuery config variables
 BQ_CONN_ID = "google_cloud_default" # Defined in airflow connection
@@ -72,5 +72,9 @@ postgres_company_to_gcs = PostgresToGCSOperator(
     gcp_conn_id = BQ_CONN_ID,  # Set your GCS connection ID
     dag = dag,
 )
+
+
+## Task to transfer data from GCS to BigQuery
+
 
 postgres_stock_to_gcs >> postgres_company_to_gcs

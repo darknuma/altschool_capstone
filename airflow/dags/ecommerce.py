@@ -29,16 +29,16 @@ default_args = {
      )
 
 @task 
-get_data = PostgresToGCSOperator(
-        task_id="upload_to_gcs",
-        postgres_conn_id=CONNECTION_ID,
-        sql=SQL_SELECT,
-        bucket=BUCKET_NAME,
-        filename=FILE_NAME,
-        gzip=False,
-    )
+# get_data = PostgresToGCSOperator(
+#         task_id="upload_to_gcs",
+#         postgres_conn_id=CONNECTION_ID,
+#         sql=SQL_SELECT,
+#         bucket=BUCKET_NAME,
+#         filename=FILE_NAME,
+#         gzip=False,
+#     )
 
 
-load_to_bq = GCSToBigQueryOperator(
+# load_to_bq = GCSToBigQueryOperator(
 
-)
+# )
