@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS olist.orders (
 CREATE TABLE IF NOT EXISTS olist.products (
     product_id VARCHAR(255) PRIMARY KEY,
     product_category_name VARCHAR(255),
-    product_name_lenght INT,
-    product_description_lenght INT,
+    product_name_length INT,
+    product_description_length INT,
     product_photos_qty INT,
     product_weight_g INT,
     product_length_cm INT,
