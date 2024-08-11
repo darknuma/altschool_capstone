@@ -6,3 +6,6 @@ config
 logs
 plugins
 __pycache__
+claude.py 
+olist_to_gcp.py
+ecommerce.py 
