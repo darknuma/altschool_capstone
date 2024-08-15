@@ -50,13 +50,13 @@
       {"name": "payment_value", "type": "FLOAT", "mode": "NULLABLE"}
     ],
     "order_reviews": [
-      {"name": "review_id", "type": "STRING", "mode": "NULLABLE"},
+      {"name": "review_id", "type": "STRING", "mode": "REQUIRED"},
       {"name": "order_id", "type": "STRING", "mode": "NULLABLE"},
-      {"name": "review_score", "type": "INTEGER", "mode": "NULLABLE"},
+      {"name": "review_score", "type": "INTEGER", "mode": "REQUIRED"},
       {"name": "review_comment_title", "type": "STRING", "mode": "NULLABLE"},
       {"name": "review_comment_message", "type": "STRING", "mode": "NULLABLE"},
-      {"name": "review_creation_date", "type": "DATE", "mode": "NULLABLE"},
-      {"name": "review_answer_timestamp", "type": "TIMESTAMP", "mode": "NULLABLE"}
+      {"name": "review_creation_date", "type": "DATE", "mode": "REQUIRED"},
+      {"name": "review_answer_timestamp", "type": "TIMESTAMP", "mode": "REQUIRED"}
     ],
     "geolocation_data": [
       {"name": "geolocation_zip_code_prefix", "type": "STRING", "mode": "NULLABLE"},
