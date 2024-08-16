@@ -24,13 +24,13 @@ with DAG(
 
     dbt_run = BashOperator(
         task_id='dbt_run',
-        bash_command='cd /opt/dbt/ecommerce_dbt && dbt run',
+        bash_command='cd /opt/dbt && dbt run --project-dir /opt/dbt/ecommerce_dbt',
         dag=dag,
     )
 
     dbt_test = BashOperator(
         task_id='dbt_test',
-        bash_command='cd  /opt/dbt/ecommerce_dbt && dbt test',
+        bash_command='cd  /opt/dbt && dbt test --project-dir /opt/dbt/ecommerce_dbt',
         dag=dag,
     )
 

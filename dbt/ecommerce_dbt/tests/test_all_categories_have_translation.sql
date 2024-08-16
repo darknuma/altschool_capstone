@@ -6,7 +6,7 @@
 WITH product_categories AS (
     SELECT DISTINCT product_category_name
     FROM {{ ref('stg_bq_products') }}
-    WHERE product_category_name != 'None'
+    WHERE product_category_name IS NOT NULL
 ),
 translations AS (
     SELECT DISTINCT product_category_name
