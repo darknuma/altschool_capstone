@@ -10,3 +10,8 @@ claude.py
 olist_to_gcp.py
 ecommerce.py 
 profiles.yml
+packages.yml
+package.lock.yml 
+src/
+test.py 
+.pytest_cache

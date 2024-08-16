@@ -1,4 +1,3 @@
--- models/staging/stg_order_items.sql
 SELECT
     order_id,
     order_item_id,

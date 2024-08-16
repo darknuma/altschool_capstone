@@ -86,4 +86,4 @@ csv_files = [
     ('product_category_name_translation.csv', 'product_category_translation')
 ]
 
-run_etl(db_params, csv_files)  # Uncomment this line to run the ETL process
+run_etl(db_params, csv_files)  #

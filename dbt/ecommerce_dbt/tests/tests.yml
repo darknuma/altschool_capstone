@@ -1,0 +1,8 @@
+# tests.yml
+version: 2
+
+models:
+  - name: test_category_translation
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('stg_bq_products')
