@@ -25,8 +25,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-./airflow}/plugins:/opt/airflow/plugins
     - ${AIRFLOW_PROJ_DIR:-./airflow}/config/altschool-capstones-e2f54a131769.json:/opt/airflow/config/altschool-capstones-e2f54a131769.json
     - ${AIRFLOW_PROJ_DIR:-./airflow}/dags/package/schema.json:/opt/airflow/dags/package/schema.json
-    - ${AIRFLOW_PROJ_DIR:-./airflow}/config/profiles.yml:/opt/airflow/.dbt/profiles.yml
-    - ${AIRFLOW_PROJ_DIR:-./airflow}/dbt:/opt/airflow/dbt
+    - ${DBT_PROFILES_DIR:-./dbt}:/opt/dbt
 
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:

@@ -9,3 +9,4 @@ __pycache__
 claude.py 
 olist_to_gcp.py
 ecommerce.py 
+profiles.yml

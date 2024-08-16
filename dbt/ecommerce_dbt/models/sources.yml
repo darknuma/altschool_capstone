@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    database: altschool-capstones
+    schema: ecommerce
+    tables:
+      - name: orders
+      - name: products
+      - name: order_items
+      - name: customers
+      - name: product_category_translation
+      - name: order_reviews
+      - name: order_payments
+      - name: geolocation_data
+      - name: sellers
