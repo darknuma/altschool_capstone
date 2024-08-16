@@ -1,58 +1,71 @@
-# ALT SCHOOL CAPSTONE PROJECT
+# AltSchool Capstone Project
 
-An end-to-end implementation of ETL process using [https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce](Olist) from Kaggle using, PostgreSQL, Docker, Docker Compose, Dbt and Airflow.
+This project demonstrates an end-to-end ETL (Extract, Transform, Load) process using the [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) from Kaggle. The implementation utilizes PostgreSQL, Docker, Docker Compose, dbt (Data Build Tool), and Apache Airflow.
 
-## REQUIREMENTS
+## Requirements
 
-```markdown
-- Ensure you have [https://www.docker.com/](Docker) installed on your computer, have a [https://cloud.google.com/](GCP) account
-- Create your PROJECT_ID, DATASET and in IAM/service_account, create key service account, with the BigQuery and Cloud Storage privileges.
-- Have a [https://www.github.com](GitHub) account
-- Edit PROJECT_ID, DATASET, and service account for your own use in the `docker-compose.yaml` and `Dockerfile`
-```
+- Ensure [Docker](https://www.docker.com/) is installed on your machine.
+- Set up a [Google Cloud Platform (GCP)](https://cloud.google.com/) account.
+- Create a GCP project with a `PROJECT_ID` and `DATASET`. In the IAM section, create a service account with the appropriate BigQuery and Cloud Storage permissions, and generate a key.
+- Have a [GitHub](https://www.github.com) account.
+- Modify the `docker-compose.yaml` and `Dockerfile` to include your own `PROJECT_ID`, `DATASET`, and service account details.
 
-## HOW TO RUN
+## How to Run
 
-```markdown
-* Fork and Clone this project [https://github.com/darknuma/altschool_capstone.git](here)
-* Run Docker in shell, this would trigger the `DockerFile` and `docker-compose.yaml` 
-  (CSV Files are extracted to PostgreSQL, from the `init.sql` file) 
-    ```sh
-        cd project_directory
-        docker-compose up --build 
-    ```
-* In Airflow Connections set up `google_cloud_default` and `postgres_default`, test if the connections are good. (ENVIRONMENT VARIABLE FOR GOOGLE CREDENTIALS      SHOULD BE EDITED IN `docker-compose.yaml`, specifically volumes)
-* Login to Airflow and Run the DAGS, to trigger `Postgres_to_BigQuery` DAG ID (Extraction to PostgreSQL and Load to BigQuery)
-* To check for your dbt connections, For a new dbt project.
-    ```sh
-        docker exec -it [CONTAINER_NAME] [COMMAND]
-        cd [DBT_PROJECT_PATH]
-        dbt init [OPTIONAL]
-        dbt-debug 
-    ```
-* Trigger `dbt_pipeline` DAG ID, to run transformation, and test.
-* Check the analyses in BigQuery Console.
-```
+1. **Fork and Clone the Project:**
+   - Fork and clone this repository from [here](https://github.com/darknuma/altschool_capstone.git).
 
-## PROJECT STRUCTURE
+2. **Build and Start Docker Containers:**
+   - Navigate to the project directory and run Docker to trigger the `Dockerfile` and `docker-compose.yaml`. This will set up the environment, including loading CSV data into PostgreSQL as defined in the `init.sql` file.
 
-```markdown
-+ infra_scripts: This folder contains init.sql which extracts data from CSV files into ecommerce database
-    * `init.sql` (table and copy)
-+ dbt: This folder contains `ecommerce_dbt` which contains the models to transform and perform analysis
-    * `ecommerce_dbt`: contains `models`
-        - `models`: (staging, intermediate and mart)
-        - `tests`: (test for `delivery_time.sql`, `order_count_matches.sql`, `test_all_categories_translation.sql`--this failed because of null values)
-        - `dbt_project.yml`: (configuration for dbt)
-        - `requirements.txt`: (libraries dependencies)
-+ airflow
-    * `dags`
-        - package: contains the `schema.json` file for the schema in BigQuery
-        - `ecommerce.py`: DAG script to extract to PostgreSQL and load to BigQuery
-        - `transformation.py`: A DAG script using BashOperator to run `dbt run && dbt test`
-        
-+ docker-compose.yaml: Comprises of the infrastructure setup for PostgreSQL, Airflow and directories for DBT_PROFILE_DIR
-+ Dockerfile: Dockerfile for Airflow setup and user setup, with setting DBT environments.
-```
+     ```sh
+     cd project_directory
+     docker-compose up --build 
+     ```
 
-FOR FEEDBACK, send a DM to my X account [https://www.x.com/numatelly](Numatelly)
+3. **Set Up Airflow Connections:**
+   - In the Airflow UI, configure the `google_cloud_default` and `postgres_default` connections. Test the connections to ensure they are set up correctly. Ensure that the Google credentials environment variable is properly set in `docker-compose.yaml` (under volumes).
+
+4. **Run Airflow DAGs:**
+   - Log in to Airflow and manually trigger the `Postgres_to_BigQuery` DAG. This DAG handles data extraction from PostgreSQL and loading it into BigQuery.
+
+5. **Verify dbt Setup:**
+   - To verify dbt connections or initialize a new dbt project, run the following commands inside the Docker container:
+
+     ```sh
+     docker exec -it [CONTAINER_NAME] [COMMAND]
+     cd [DBT_PROJECT_PATH]
+     dbt init [OPTIONAL]
+     dbt debug 
+     ```
+
+6. **Run dbt Transformations and Tests:**
+   - Trigger the `dbt_pipeline` DAG in Airflow to perform data transformations and run tests using dbt.
+
+7. **Analyze Data in BigQuery:**
+   - Review the results and analyses directly in the BigQuery Console.
+
+## Project Structure
+
+- **infra_scripts:** Contains the `init.sql` script, which creates tables and loads data from CSV files into the `ecommerce` database.
+  - `init.sql`: SQL script for table creation and data loading.
+
+- **dbt:** Contains the `ecommerce_dbt` project, which includes dbt models for data transformation and analysis.
+  - `ecommerce_dbt`:
+    - `models`: Organized into staging, intermediate, and mart layers.
+    - `tests`: Includes SQL tests such as `delivery_time.sql`, `order_count_matches.sql`, and `test_all_categories_translation.sql` (Note: the last test may fail due to null values).
+    - `dbt_project.yml`: Configuration file for dbt.
+    - `requirements.txt`: Lists the dependencies required for the dbt project.
+
+- **airflow:**
+  - **dags:**
+    - `package`: Contains `schema.json`, defining the schema for BigQuery.
+    - `ecommerce.py`: DAG script for extracting data to PostgreSQL and loading it into BigQuery.
+    - `transformation.py`: DAG script using BashOperator to run `dbt run && dbt test`.
+
+- **docker-compose.yaml:** Defines the infrastructure setup for PostgreSQL, Airflow, and directories for the dbt profile.
+- **Dockerfile:** Configures Airflow and sets up the dbt environment.
+
+## Feedback
+
+For any feedback, feel free to reach out via DM on my X account [Numatelly](https://www.x.com/numatelly)
