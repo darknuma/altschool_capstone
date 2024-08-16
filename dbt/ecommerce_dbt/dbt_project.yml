@@ -19,15 +19,17 @@ clean-targets:         # directories to be removed by `dbt clean`
 # packages:
 #   - package: fishtown-analytics/dbt_utils
 #     version: 0.7.3 
-
+analyses:
+  ecommerce_dbt:
+    +materialized: table
 models:
   ecommerce_dbt: 
     staging:
       +materialized: view
     intermediate:
-      +materialized: table
+      +materialized: view
     mart:
-      +materialized: table
+      +materialized: view
 
     # intermediate:
     #   int_bq_sales_by_category:

@@ -1,5 +1,5 @@
 {{ config(
-    materialized='table',
+    materialized='view',
     schema='ecommerce'
 ) }}
 
@@ -8,3 +8,5 @@ SELECT
     order_count,
     RANK() OVER (ORDER BY order_count DESC) as order_rank
 FROM {{ ref('int_bq_orders_by_state') }}
+ORDER BY
+    order_rank ASC

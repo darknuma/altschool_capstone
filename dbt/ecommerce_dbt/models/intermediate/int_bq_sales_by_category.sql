@@ -1,3 +1,6 @@
+-- just aggregated sales
+
+
 SELECT
     p.product_category_name_english,
     SUM(oi.price) as total_sales
