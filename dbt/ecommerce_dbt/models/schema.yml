@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_bq_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+
+  - name: stg_bq_products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: product_category_name
+        tests:
+          - not_null
+
+  - name: fct_bq_sales_by_category
+    columns:
+      - name: product_category_name_english
+        tests:
+          - unique
+          - not_null
+      - name: total_sales
+        tests:
+          - not_null
+
+  - name: fct_bq_avg_delivery_time
+    columns:
+      - name: avg_delivery_time_days
+        tests:
+          - not_null
+
+  - name: fct_bq_orders_by_state
+    columns:
+      - name: customer_state
+        tests:
+          - unique
+          - not_null
+      - name: order_count
+        tests:
+          - not_null
