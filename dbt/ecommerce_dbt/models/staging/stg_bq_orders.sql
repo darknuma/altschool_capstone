@@ -1,5 +1,5 @@
 -- the order model with necessary joins
--- models/staging/stg_orders.sql
+
 SELECT
     order_id,
     customer_id,

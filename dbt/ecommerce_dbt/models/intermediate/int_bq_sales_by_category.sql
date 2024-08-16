@@ -1,4 +1,3 @@
--- models/intermediate/int_sales_by_category.sql
 SELECT
     p.product_category_name_english,
     SUM(oi.price) as total_sales

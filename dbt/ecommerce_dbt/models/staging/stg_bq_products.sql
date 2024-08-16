@@ -1,5 +1,4 @@
 -- the raw products model
--- models/staging/stg_products.sql
 SELECT
     p.product_id,
     p.product_category_name,

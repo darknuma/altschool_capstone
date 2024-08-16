@@ -1,4 +1,8 @@
--- models/mart/fct_orders_by_state.sql
+{{ config(
+    materialized='table',
+    schema='ecommerce'
+) }}
+
 SELECT
     customer_state,
     order_count,

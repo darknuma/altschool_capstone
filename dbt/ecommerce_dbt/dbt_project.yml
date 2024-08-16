@@ -1,0 +1,43 @@
+name: 'ecommerce_dbt'
+version: '1.0.0'
+
+
+profile: 'ecommerce_dbt'
+
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+packages:
+  - package: fishtown-analytics/dbt_utils
+    version: 0.7.3 
+
+models:
+  ecommerce_dbt: 
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: table
+    mart:
+      +materialized: table
+
+    intermediate:
+      int_bq_sales_by_category:
+        +materialized: incremental
+        +incremental_strategy: merge
+        +unique_key: product_category_name_english
+    # mart:
+    #   final:
+    #     fct_bq_avg_delivery_time:
+    #       +materialized: incremental
+    #       +incremental_strategy: merge
+    #       +unique_key: date
+

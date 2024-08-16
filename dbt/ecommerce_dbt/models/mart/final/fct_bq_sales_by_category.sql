@@ -1,4 +1,8 @@
--- models/mart/fct_sales_by_category.sql
+{{ config(
+    materialized='table',
+    schema='ecommerce'
+) }}
+
 SELECT
     product_category_name_english,
     total_sales,
