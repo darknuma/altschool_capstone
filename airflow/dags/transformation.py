@@ -10,6 +10,7 @@ default_args = {
     'email_on_retry': False,
     'retries': 2,
     'retry_delay': timedelta(minutes=5),
+    'tags': 'DBT RUN'
 }
 
 with DAG(
@@ -23,13 +24,13 @@ with DAG(
 
     dbt_run = BashOperator(
         task_id='dbt_run',
-        bash_command='cd /path/to/dbt/project && dbt run',
+        bash_command='cd /opt/dbt/ecommerce_dbt && dbt run',
         dag=dag,
     )
 
     dbt_test = BashOperator(
         task_id='dbt_test',
-        bash_command='cd /path/to/dbt/project && dbt test',
+        bash_command='cd  /opt/dbt/ecommerce_dbt && dbt test',
         dag=dag,
     )
 
