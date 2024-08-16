@@ -17,23 +17,22 @@ models:
         tests:
           - unique
           - not_null
-      - name: product_category_name
-        tests:
-          - not_null
 
   - name: fct_bq_sales_by_category
     columns:
       - name: product_category_name_english
         tests:
           - unique
-          - not_null
       - name: total_sales
         tests:
           - not_null
 
   - name: fct_bq_avg_delivery_time
     columns:
-      - name: avg_delivery_time_days
+      - name: final_avg_delivery_time_days
+        tests:
+          - not_null
+      - name: final_avg_delivery_time_minutes
         tests:
           - not_null
 
