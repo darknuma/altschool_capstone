@@ -10,3 +10,6 @@ SELECT
 FROM {{ source('raw', 'products') }} p
 LEFT JOIN {{ ref('stg_bq_product_category_translation') }} pct
     ON p.product_category_name = pct.product_category_name
+
+
+-- there are null values in product category name, I decided not to remove it.

@@ -1,5 +1,3 @@
--- the order model with necessary joins
-
 SELECT
     order_id,
     customer_id,

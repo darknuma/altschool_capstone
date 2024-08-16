@@ -16,9 +16,9 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-packages:
-  - package: fishtown-analytics/dbt_utils
-    version: 0.7.3 
+# packages:
+#   - package: fishtown-analytics/dbt_utils
+#     version: 0.7.3 
 
 models:
   ecommerce_dbt: 
@@ -29,11 +29,10 @@ models:
     mart:
       +materialized: table
 
-    intermediate:
-      int_bq_sales_by_category:
-        +materialized: incremental
-        +incremental_strategy: merge
-        +unique_key: product_category_name_english
+    # intermediate:
+    #   int_bq_sales_by_category:
+    #     +materialized: view
+    #     +unique_key: product_category_name_english
     # mart:
     #   final:
     #     fct_bq_avg_delivery_time:

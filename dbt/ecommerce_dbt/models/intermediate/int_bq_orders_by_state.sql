@@ -1,4 +1,4 @@
--SELECT
+SELECT
     c.customer_state,
     COUNT(DISTINCT o.order_id) as order_count
 FROM {{ ref('stg_bq_orders') }} o
